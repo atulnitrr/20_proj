@@ -11,7 +11,6 @@ const showError = (element, message) => {
   formControl.className = "form-control error";
   const small = formControl.querySelector("small");
   small.innerText = message;
-  console.log(small);
 };
 
 const showSuccess = (input) => {
@@ -24,31 +23,24 @@ const isValidEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+const checkRequird = (inputArray) => {
+  inputArray.forEach((item) => {
+    if (item.value.trim() === "") {
+      showError(item, `${getFieldName(item)} is required`);
+    } else {
+      showSuccess(item);
+    }
+  });
+};
+
+const getFieldName = (input) =>
+  `${input.id.charAt(0).toUpperCase()}${input.id.slice(1)}`;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  checkRequird([username, email, password, confirmpassword]);
   // console.log(username.value);
-  if (username.value === "") {
-    showError(username, "user name required");
-  } else {
-    showSuccess(username);
-  }
-  if (email.value === "") {
-    showError(email, "email required");
-  } else if (!isValidEmail(email.value)) {
-    showError(email, "Not a valid email");
-  } else {
-    showSuccess(email);
-  }
-  if (password.value === "") {
-    showError(password, "password  required");
-  } else {
-    showSuccess(password);
-  }
-  if (confirmpassword.value === "") {
-    showError(confirmpassword, "confirm password  name required");
-  } else {
-    showSuccess(confirmpassword);
-  }
 });
 
 /*
