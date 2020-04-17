@@ -18,9 +18,30 @@ const showSuccess = (input) => {
   formControl.className = "form-control success";
 };
 
-const isValidEmail = (email) => {
+const checkEmail = (input) => {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+  } else {
+    showError(input, "Email is not valid");
+  }
   return re.test(String(email).toLowerCase());
+};
+
+const checkPassMatching = (pass, confirmpass) => {
+  if (pass.value.trim() !== confirmpass.value.trim()) {
+    showError(confirmpass, "Pass word dont match");
+  }
+};
+
+const checkLength = (input, min, max) => {
+  if (input.value.length < min) {
+    showError(input, `${getFieldName(input)} must be at least ${min}`);
+  } else if (input.value.length > max) {
+    showError(input, `${getFieldName(input)} must be at most ${max}`);
+  } else {
+    showSuccess(input);
+  }
 };
 
 const checkRequird = (inputArray) => {
@@ -40,6 +61,11 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   checkRequird([username, email, password, confirmpassword]);
+  checkLength(username, 4, 9);
+  checkLength(password, 4, 20);
+  checkEmail(email);
+  checkPassMatching(password, confirmpassword);
+
   // console.log(username.value);
 });
 
