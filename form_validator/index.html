@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form validator</title>
   </head>
   <body>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quas
-      amet earum optio aut eum deleniti totam ipsam recusandae assumenda itaque
-      cupiditate, soluta, provident illum facere minima! Amet, veritatis hic?
-    </p>
+    <div class="container">
+      <form id="form" class="form">
+        <h2>Register with us</h2>
+        <div class="form-control">
+          <label for="username">UserName</label>
+          <input type="text" class="username" placeholder="Enter username" />
+          <small>Error message will go </small>
+        </div>
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input type="text" class="email" placeholder="Enter email" />
+          <small>Error message will go</small>
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="password"
+            placeholder="Enter password"
+          />
+          <small>Error message will go </small>
+        </div>
+        <div class="form-control">
+          <label for="confirmpassword">Confirm Password</label>
+          <input
+            type="password"
+            class="confirmpassword"
+            placeholder="Enter Password"
+          />
+          <small>Error message will go </small>
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+    <script src="js/script.js"></script>
   </body>
 </html>
